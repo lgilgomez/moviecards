@@ -97,8 +97,8 @@ jobs:
         id: deploy-to-preproduction
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'moviecards-pre-gilgomez'
-          slot-name: 'Production'
+          app-name: 'moviecards-pre'
+          slot-name: 'Pre-Production'
           package: '*.jar'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_796042E71833499B93C0B99FD46FE4D1 }}          
   deploy:
