@@ -99,7 +99,8 @@ jobs:
         with:
           app-name: 'moviecards-pre'
           slot-name: 'Pre-Production'
-          package: '*.jar'                    
+          package: '*.jar'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BBB091937F15416EA711AC63710F0D5E }}                    
   deploy:
     runs-on: ubuntu-latest
     needs: stage
