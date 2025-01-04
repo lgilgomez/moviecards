@@ -24,6 +24,9 @@ import java.util.List;
 public class ActorController {
 
     private final ActorService actorService;
+    private final String actorStr = "actor";
+    private final String titleStr = "title";
+    private final String actorsFormsStr = "actors/form";
 
     public ActorController(ActorService actorService) {
         this.actorService = actorService;
@@ -37,15 +40,15 @@ public class ActorController {
 
     @GetMapping("actors/new")
     public String newActor(Model model) {
-        model.addAttribute("actor", new Actor());
-        model.addAttribute("title", Messages.NEW_ACTOR_TITLE);
-        return "actors/form";
+        model.addAttribute(actorStr, new Actor());
+        model.addAttribute(titleStr, Messages.NEW_ACTOR_TITLE);
+        return actorsFormsStr;
     }
 
     @PostMapping("saveActor")
-    public String saveActor(@ModelAttribute Actor actor, BindingResult result, Model model) {
+    public String saveActor(Actor actor, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "actors/form";
+            return actorsFormsStr;
         }
         Actor actorSaved = actorService.save(actor);
         if (actor.getId() != null) {
@@ -54,21 +57,21 @@ public class ActorController {
             model.addAttribute("message", Messages.SAVED_ACTOR_SUCCESS);
         }
 
-        model.addAttribute("actor", actorSaved);
-        model.addAttribute("title", Messages.EDIT_ACTOR_TITLE);
-        return "actors/form";
+        model.addAttribute(actorStr, actorSaved);
+        model.addAttribute(titleStr, Messages.EDIT_ACTOR_TITLE);
+        return actorsFormsStr;
     }
 
     @GetMapping("editActor/{actorId}")
     public String editActor(@PathVariable Integer actorId, Model model) {
         Actor actor = actorService.getActorById(actorId);
         List<Movie> movies = actor.getMovies();
-        model.addAttribute("actor", actor);
+        model.addAttribute(actorStr, actor);
         model.addAttribute("movies", movies);
 
-        model.addAttribute("title", Messages.EDIT_ACTOR_TITLE);
+        model.addAttribute(titleStr, Messages.EDIT_ACTOR_TITLE);
 
-        return "actors/form";
+        return actorsFormsStr;
     }
 
 
