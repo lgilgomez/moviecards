@@ -12,7 +12,7 @@ import java.util.Objects;
  * Proyecto: TFM Integración Continua con GitHub Actions
  * Fecha: 04/06/2024
  */
-@Entity
+
 public class Actor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
