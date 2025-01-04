@@ -46,7 +46,7 @@ public class MovieController {
     }
 
     @PostMapping("saveMovie")
-    public String saveMovie(Movie movie, BindingResult result, Model model) {
+    public String saveMovie(@PathVariable Movie movie, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return moviesFormsStr;
         }

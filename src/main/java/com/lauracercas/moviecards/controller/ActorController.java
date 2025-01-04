@@ -46,7 +46,7 @@ public class ActorController {
     }
 
     @PostMapping("saveActor")
-    public String saveActor(Actor actor, BindingResult result, Model model) {
+    public String saveActor(@PathVariable Actor actor, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return actorsFormsStr;
         }
